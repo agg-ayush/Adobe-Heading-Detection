@@ -444,30 +444,20 @@ class PDFStructureExtractor:
             # Only apply strict filtering if this is not the fallback flyer/simple doc case
             is_flyer_fallback = (len(outline) == 1 and title == "")
             if is_flyer_fallback:
-                # Just clean the heading text for the flyer/simple doc
                 outline[0]["text"] = clean_heading_text(outline[0]["text"])
                 result = {
                     "title": title,
                     "outline": outline
                 }
             else:
-                main_headings = [
-                    "Revision History", "Table of Contents", "Acknowledgements", "Syllabus", "References",
-                    "Introduction", "Overview", "Business Outcomes", "Content", "Entry Requirements",
-                    "Structure and Course Duration", "Keeping It Current", "Trademarks", "Documents and Web Sites"
-                ]
-                heading_patterns = [
-                    re.compile(r"^\d+\.\s*Introduction", re.I),
-                    re.compile(r"^\d+\.\s*Overview", re.I),
-                    re.compile(r"^\d+\.\d+\s+.*", re.I),
-                    re.compile(r"^\d+\.\s*References", re.I),
-                    re.compile(r"^\d+\.\s*.*Agile Tester", re.I),
-                    re.compile(r"^\d+\.\s*.*Syllabus", re.I),
-                ]
-                def is_version_or_date(text):
+                def is_version_or_date_or_short(text):
                     if re.match(r"^\d+(\.\d+)*$", text):
                         return True
                     if re.match(r"^\d{1,2} [A-Z]{3,9} \d{2,4}$", text):
+                        return True
+                    if len(text.split()) < 2:
+                        return True
+                    if len(text.strip()) < 6:
                         return True
                     return False
 
@@ -481,24 +471,14 @@ class PDFStructureExtractor:
                     else:
                         candidates = [text]
                     for cand in candidates:
-                        if is_version_or_date(cand):
+                        if is_version_or_date_or_short(cand):
                             continue
-                        keep = False
-                        for mh in main_headings:
-                            if cand.lower().startswith(mh.lower()):
-                                keep = True
-                                break
-                        if not keep:
-                            for pat in heading_patterns:
-                                if pat.match(cand):
-                                    keep = True
-                                    break
-                        if not keep:
-                            continue
+                        # Accept if at least 2 words and reasonable length
                         key = cand.lower()
                         if key in seen:
                             continue
                         seen.add(key)
+                        # Assign H2 for subpoints (e.g., 2.1 Intended Audience), else H1
                         level = h["level"]
                         if re.match(r"^\d+\.\d+", cand):
                             level = "H2"
