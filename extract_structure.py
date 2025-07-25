@@ -54,7 +54,7 @@ class PDFStructureExtractor:
         self.classes_map = CLASSES_MAP
         
         # Performance optimizations for 10-second constraint
-        self.max_nodes_per_page = 400  # Balanced for speed vs accuracy
+        self.max_nodes_per_page = 300  # Balanced for speed vs accuracy
         self.confidence_threshold = 0.5  # Lowered threshold to catch more headings
         
         self._load_model()
@@ -285,7 +285,7 @@ class PDFStructureExtractor:
 
                 # Performance check - abort if taking too long
                 elapsed = time.time() - start_time
-                if elapsed > 8:  # Leave 2 seconds buffer for post-processing
+                if elapsed > 10:  # Leave 2 seconds buffer for post-processing
                     logger.warning(f"Time limit approaching, stopping at page {page_num + 1}")
                     break
 
