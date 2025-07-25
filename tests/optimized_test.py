@@ -9,8 +9,11 @@ import sys
 import time
 import json
 from pathlib import Path
-from typing import List, Dict, Any
+from typing import List, Dict, Any, Union
 import multiprocessing as mp
+
+# Add parent directory to path to import from training
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 import torch
 import networkx as nx
@@ -20,9 +23,9 @@ import numpy as np
 import fitz  # PyMuPDF
 
 # Import GLAM modules
-from GLAM.common import PageEdges, ImageNode, TextNode, PageNodes
-from GLAM.models import GLAMGraphNetwork
-from dln_glam_prepare import CLASSES_MAP
+from core.common import PageEdges, ImageNode, TextNode, PageNodes
+from core.models import GLAMGraphNetwork
+from glam_classes import CLASSES_MAP
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -37,7 +40,7 @@ class OptimizedGLAMTester:
     def __init__(self, model_path: str = "models/glam_dln.pt", enable_optimizations: bool = True):
         """Initialize the optimized tester"""
         self.model_path = model_path
-        self.device = "cuda" if torch.cuda.is_available() else "cpu"
+        self.device: Any = "cuda" if torch.cuda.is_available() else "cpu"
         self.model = None
         self.classes_map = CLASSES_MAP
         self.results = []
@@ -182,12 +185,13 @@ class OptimizedGLAMTester:
         # Batch inference for better performance
         try:
             # Create batch
-            batch_data = Batch.from_data_list([data for _, data, _ in valid_data])
+            batch_data: Any = Batch.from_data_list([data for _, data, _ in valid_data])
             batch_data = batch_data.to(self.device)
             
             # Single forward pass for all pages in batch
             start_time = time.time()
             with torch.no_grad():
+                assert self.model is not None  # Model should be initialized by now
                 node_class_scores, edge_class_scores = self.model(batch_data)
             inference_time = time.time() - start_time
             
@@ -218,7 +222,7 @@ class OptimizedGLAMTester:
                 # Quick statistics
                 node_class_counts = {}
                 for pred in node_predictions:
-                    class_id = pred.item()
+                    class_id = int(pred.item())  # Convert to int for dictionary lookup
                     class_name = self.classes_map.get(class_id, f"Unknown_{class_id}")
                     node_class_counts[class_name] = node_class_counts.get(class_name, 0) + 1
                 
@@ -255,6 +259,7 @@ class OptimizedGLAMTester:
             
             start_time = time.time()
             with torch.no_grad():
+                assert self.model is not None  # Model should be initialized by now
                 node_class_scores, edge_class_scores = self.model(data)
             inference_time = time.time() - start_time
             
@@ -269,7 +274,7 @@ class OptimizedGLAMTester:
             
             node_class_counts = {}
             for pred in node_predictions:
-                class_id = pred.item()
+                class_id = int(pred.item())  # Convert to int for dictionary lookup
                 class_name = self.classes_map.get(class_id, f"Unknown_{class_id}")
                 node_class_counts[class_name] = node_class_counts.get(class_name, 0) + 1
             
@@ -281,7 +286,7 @@ class OptimizedGLAMTester:
                 "error": None,
                 "stats": {
                     "total_nodes": len(page_nodes),
-                    "total_edges": data.edge_index.shape[1],
+                    "total_edges": data.edge_index.shape[1] if data.edge_index is not None else 0,
                     "connected_edges": connected_edges,
                     "inference_time": inference_time,
                     "node_class_counts": node_class_counts,
@@ -395,7 +400,7 @@ def main():
     
     parser = argparse.ArgumentParser(description="Optimized batch test GLAM model")
     parser.add_argument("--model", default="models/glam_dln.pt", help="Path to model file")
-    parser.add_argument("--pdf", default="examples/pdf/book law.pdf", help="PDF file to test")
+    parser.add_argument("--pdf", default="examples/book law.pdf", help="PDF file to test")
     parser.add_argument("--max-pages", type=int, default=50, help="Max pages to process")
     parser.add_argument("--output", default="test_report_optimized.json", help="Output report file")
     parser.add_argument("--no-optimizations", action="store_true", help="Disable optimizations")

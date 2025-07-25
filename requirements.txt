@@ -1,3 +1,31 @@
-torch
-PyMuPDF
-qoi
+# GLAM Model Dependencies - Core Requirements
+torch>=2.0.0
+torch-geometric>=2.3.0
+PyMuPDF>=1.23.0
+networkx>=3.0
+numpy>=1.24.0
+
+# Image and Computer Vision - Core Requirements
+opencv-python>=4.8.0
+Pillow>=10.0.0
+
+# Geometry and Spatial Operations - Core Requirements
+scipy>=1.11.0
+shapely>=2.0.0
+
+# Progress Bars and System Monitoring - Core Requirements
+tqdm>=4.66.0
+
+# ===== TRAINING DEPENDENCIES (Uncomment if needed for training) =====
+# OCR and Text Processing (for training only)
+# easyocr>=1.7.0
+# tesserocr>=2.6.0
+
+# System Monitoring (for training only)
+# psutil>=5.9.0
+
+# Data Processing (for training only)
+# polars>=0.20.0
+
+# Image Formats (for training only)
+# qoi>=0.1.0

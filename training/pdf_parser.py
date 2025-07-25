@@ -20,7 +20,7 @@ from tesserocr import PyTessBaseAPI
 from tesserocr import get_languages
 from tqdm import tqdm
 
-from GLAM.common import get_bytes_per_pixel, truncate_with_ellipsis, pixmap_to_image, pixmap_to_ndarray
+from core.common import get_bytes_per_pixel, truncate_with_ellipsis, pixmap_to_image, pixmap_to_ndarray
 
 # logging.basicConfig(filename='dln.log', level=logging.DEBUG)
 logger = logging.getLogger(__name__)

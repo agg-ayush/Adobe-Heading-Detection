@@ -10,20 +10,23 @@ import time
 from collections import defaultdict
 from typing import Mapping, Optional, Any, Iterable
 
+# Add parent directory to path to import core modules
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 import networkx as nx
 import numpy as np
 import psutil
 import torch
 import torch.nn.functional as F
-import torch_geometric
+import torch_geometric.data
 from PIL import Image, ImageDraw
 from scipy.spatial import ConvexHull
 from shapely.geometry import Polygon, box
-from torch_geometric.data import Data
+from torch_geometric.data import Data, Dataset
 from tqdm import tqdm
 from tqdm.contrib.logging import logging_redirect_tqdm
 
-from GLAM.common import PageNodes, PageEdges, TextNode, ImageNode
+from core.common import PageNodes, PageEdges, TextNode, ImageNode
 
 
 logger = logging.getLogger(__name__)
@@ -286,8 +289,8 @@ def process_row(dataset_dir, output_dir, split_name, image_id) -> Optional[Data]
         dst_node_i = edge_index[1, k].item()
 
         # Get segmentations for both nodes
-        src_node_segmentations = node_segmentations.get(src_node_i, [])
-        dst_node_segmentations = node_segmentations.get(dst_node_i, [])
+        src_node_segmentations = node_segmentations.get(int(src_node_i), [])
+        dst_node_segmentations = node_segmentations.get(int(dst_node_i), [])
 
         # Calculate similarity between segmentations
         for src_node_segmentation in src_node_segmentations:
@@ -443,6 +446,9 @@ def main():
 
     num_processes = psutil.cpu_count(logical=False)
     # num_processes = 1
+    # Ensure num_processes is not None
+    if num_processes is None:
+        num_processes = 1
     logger.debug(f"Using {num_processes} processes.")
     tasks_in_pool = 0
     max_tasks_in_pool = 100 + num_processes
@@ -497,7 +503,11 @@ def main():
             print("Tasks in pool:", tasks_in_pool)
             print("Waiting for following tasks:")
             # print(pool._cache)
-            print(pool._taskqueue)
+            # Safe access to private attribute for debugging
+            try:
+                print(getattr(pool, '_taskqueue', 'Unable to access task queue'))
+            except AttributeError:
+                print("Task queue not accessible")
             time.sleep(1)
 
         pool.close()

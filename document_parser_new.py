@@ -27,9 +27,9 @@ from torch_geometric.data import Data
 import fitz  # PyMuPDF
 
 # Import GLAM modules
-from GLAM.common import PageEdges, ImageNode, TextNode, PageNodes
-from GLAM.models import GLAMGraphNetwork
-from dln_glam_prepare import CLASSES_MAP
+from core.common import PageEdges, ImageNode, TextNode, PageNodes
+from core.models import GLAMGraphNetwork
+from glam_classes import CLASSES_MAP
 
 # Configure logging
 logging.basicConfig(level=logging.WARNING)  # Reduce verbosity for production
@@ -91,7 +91,7 @@ class PDFStructureExtractor:
             page_nodes = PageNodes()
             
             # Extract text and structure from page
-            page_dict = page.get_text("dict", flags=fitz.TEXT_PRESERVE_IMAGES)
+            page_dict = page.get_text("dict", flags=fitz.TEXT_PRESERVE_IMAGES)  # type: ignore
             
             for block in page_dict.get("blocks", []):
                 if block["type"] == 0:  # Text block
@@ -318,7 +318,7 @@ class PDFStructureExtractor:
             doc = fitz.Document(pdf_path)
             for page_num in range(min(max_pages, doc.page_count)):
                 page = doc[page_num]
-                page_dict = page.get_text("dict", flags=fitz.TEXT_PRESERVE_IMAGES)
+                page_dict = page.get_text("dict", flags=fitz.TEXT_PRESERVE_IMAGES)  # type: ignore
                 for block in page_dict.get("blocks", []):
                     if block["type"] == 0:
                         for line in block.get("lines", []):
@@ -397,7 +397,7 @@ class PDFStructureExtractor:
                 best = None
                 for page_num in range(min(max_pages, doc.page_count)):
                     page = doc[page_num]
-                    page_dict = page.get_text("dict", flags=fitz.TEXT_PRESERVE_IMAGES)
+                    page_dict = page.get_text("dict", flags=fitz.TEXT_PRESERVE_IMAGES)  # type: ignore
                     for block in page_dict.get("blocks", []):
                         if block["type"] == 0:
                             for line in block.get("lines", []):
@@ -527,8 +527,8 @@ def main():
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
-  python extract_structure.py input.pdf output.json
-  python extract_structure.py document.pdf result.json --max-pages 30
+  python document_parser.py input.pdf output.json
+  python document_parser.py document.pdf result.json --max-pages 30
         """
     )
     

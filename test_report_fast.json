@@ -1,11 +1,11 @@
 {
-  "timestamp": "2025-07-23 23:16:50",
+  "timestamp": "2025-07-25 10:27:12",
   "model_path": "models/glam_dln.pt",
   "device": "cpu",
   "max_nodes_per_page": 300,
-  "total_processing_time": 13.968618631362915,
+  "total_processing_time": 8.003302574157715,
   "result": {
-    "pdf_path": "examples/pdf/book law.pdf",
+    "pdf_path": "examples/book law.pdf",
     "pages": [
       {
         "page_number": 1,
@@ -21,9 +21,9 @@
           "total_nodes": 32,
           "total_edges": 1984,
           "connected_edges": 1164,
-          "inference_time": 0.04891347885131836,
+          "inference_time": 0.028153657913208008,
           "node_class_counts": {
-            "Picture": 32
+            "Section-header": 32
           },
           "avg_node_confidence": 0.9518155455589294,
           "avg_edge_probability": 0.5428774356842041
@@ -37,9 +37,9 @@
           "total_nodes": 72,
           "total_edges": 10224,
           "connected_edges": 1515,
-          "inference_time": 0.058052778244018555,
+          "inference_time": 0.032041072845458984,
           "node_class_counts": {
-            "Picture": 72
+            "Section-header": 72
           },
           "avg_node_confidence": 0.9497443437576294,
           "avg_edge_probability": 0.1498083621263504
@@ -52,18 +52,18 @@
         "stats": {
           "total_nodes": 116,
           "total_edges": 26680,
-          "connected_edges": 1871,
-          "inference_time": 0.11754846572875977,
+          "connected_edges": 1866,
+          "inference_time": 0.06200218200683594,
           "node_class_counts": {
-            "Page-footer": 7,
-            "Page-header": 5,
-            "Picture": 9,
-            "Section-header": 8,
-            "Table": 86,
-            "Text": 1
+            "Page-header": 7,
+            "Picture": 5,
+            "Section-header": 9,
+            "Table": 8,
+            "Text": 86,
+            "Title": 1
           },
-          "avg_node_confidence": 0.7212011218070984,
-          "avg_edge_probability": 0.1340983510017395
+          "avg_node_confidence": 0.7204409837722778,
+          "avg_edge_probability": 0.13398855924606323
         }
       },
       {
@@ -73,18 +73,18 @@
         "stats": {
           "total_nodes": 58,
           "total_edges": 6612,
-          "connected_edges": 450,
-          "inference_time": 0.0436854362487793,
+          "connected_edges": 449,
+          "inference_time": 0.02147984504699707,
           "node_class_counts": {
-            "Page-footer": 7,
-            "Page-header": 1,
-            "Picture": 15,
-            "Section-header": 16,
-            "Table": 2,
-            "Text": 17
+            "Page-header": 7,
+            "Picture": 1,
+            "Section-header": 15,
+            "Table": 16,
+            "Text": 2,
+            "Title": 17
           },
-          "avg_node_confidence": 0.4927978217601776,
-          "avg_edge_probability": 0.1486220508813858
+          "avg_node_confidence": 0.4921881854534149,
+          "avg_edge_probability": 0.14856095612049103
         }
       },
       {
@@ -95,16 +95,16 @@
           "total_nodes": 173,
           "total_edges": 59512,
           "connected_edges": 4065,
-          "inference_time": 0.2740333080291748,
+          "inference_time": 0.1293354034423828,
           "node_class_counts": {
-            "Caption": 3,
-            "Page-footer": 11,
-            "Page-header": 3,
-            "Picture": 5,
-            "Section-header": 17,
-            "Text": 134
+            "Footnote": 3,
+            "Page-header": 11,
+            "Picture": 3,
+            "Section-header": 5,
+            "Table": 17,
+            "Title": 134
           },
-          "avg_node_confidence": 0.4856775999069214,
+          "avg_node_confidence": 0.4856776297092438,
           "avg_edge_probability": 0.11071474105119705
         }
       },
@@ -122,18 +122,18 @@
           "total_nodes": 181,
           "total_edges": 65160,
           "connected_edges": 424,
-          "inference_time": 0.27806949615478516,
+          "inference_time": 0.15024542808532715,
           "node_class_counts": {
-            "Caption": 1,
-            "List-item": 5,
-            "Page-footer": 6,
-            "Page-header": 7,
-            "Picture": 3,
-            "Section-header": 57,
-            "Table": 5,
-            "Text": 97
+            "Footnote": 1,
+            "Page-footer": 5,
+            "Page-header": 6,
+            "Picture": 7,
+            "Section-header": 3,
+            "Table": 57,
+            "Text": 5,
+            "Title": 97
           },
-          "avg_node_confidence": 0.42807188630104065,
+          "avg_node_confidence": 0.42807191610336304,
           "avg_edge_probability": 0.0773237869143486
         }
       },
@@ -145,15 +145,15 @@
           "total_nodes": 86,
           "total_edges": 14620,
           "connected_edges": 1214,
-          "inference_time": 0.07077145576477051,
+          "inference_time": 0.03781914710998535,
           "node_class_counts": {
-            "Page-footer": 5,
-            "Page-header": 3,
-            "Picture": 12,
-            "Section-header": 7,
-            "Text": 59
+            "Page-header": 5,
+            "Picture": 3,
+            "Section-header": 12,
+            "Table": 7,
+            "Title": 59
           },
-          "avg_node_confidence": 0.5759926438331604,
+          "avg_node_confidence": 0.57599276304245,
           "avg_edge_probability": 0.12207264453172684
         }
       },
@@ -165,15 +165,15 @@
           "total_nodes": 80,
           "total_edges": 12640,
           "connected_edges": 654,
-          "inference_time": 0.05315542221069336,
+          "inference_time": 0.03679299354553223,
           "node_class_counts": {
-            "Page-footer": 4,
             "Page-header": 4,
-            "Picture": 14,
-            "Section-header": 19,
-            "Text": 39
+            "Picture": 4,
+            "Section-header": 14,
+            "Table": 19,
+            "Title": 39
           },
-          "avg_node_confidence": 0.5510686635971069,
+          "avg_node_confidence": 0.551068902015686,
           "avg_edge_probability": 0.10300961136817932
         }
       },
@@ -185,15 +185,15 @@
           "total_nodes": 82,
           "total_edges": 13284,
           "connected_edges": 923,
-          "inference_time": 0.04933929443359375,
+          "inference_time": 0.03503561019897461,
           "node_class_counts": {
-            "Page-footer": 3,
-            "Page-header": 2,
-            "Picture": 14,
-            "Section-header": 8,
-            "Text": 55
+            "Page-header": 3,
+            "Picture": 2,
+            "Section-header": 14,
+            "Table": 8,
+            "Title": 55
           },
-          "avg_node_confidence": 0.6002753973007202,
+          "avg_node_confidence": 0.6002753376960754,
           "avg_edge_probability": 0.1174936518073082
         }
       },
@@ -205,15 +205,15 @@
           "total_nodes": 87,
           "total_edges": 14964,
           "connected_edges": 882,
-          "inference_time": 0.05462074279785156,
+          "inference_time": 0.0418245792388916,
           "node_class_counts": {
-            "Page-footer": 4,
             "Page-header": 4,
-            "Picture": 13,
-            "Section-header": 10,
-            "Text": 56
+            "Picture": 4,
+            "Section-header": 13,
+            "Table": 10,
+            "Title": 56
           },
-          "avg_node_confidence": 0.591701865196228,
+          "avg_node_confidence": 0.5917018055915833,
           "avg_edge_probability": 0.108061283826828
         }
       },
@@ -225,16 +225,16 @@
           "total_nodes": 85,
           "total_edges": 14280,
           "connected_edges": 921,
-          "inference_time": 0.050614118576049805,
+          "inference_time": 0.037999868392944336,
           "node_class_counts": {
-            "Page-footer": 4,
-            "Page-header": 3,
-            "Picture": 13,
-            "Section-header": 14,
-            "Text": 51
+            "Page-header": 4,
+            "Picture": 3,
+            "Section-header": 13,
+            "Table": 14,
+            "Title": 51
           },
           "avg_node_confidence": 0.5767950415611267,
-          "avg_edge_probability": 0.10942848026752472
+          "avg_edge_probability": 0.10942849516868591
         }
       },
       {
@@ -245,13 +245,13 @@
           "total_nodes": 86,
           "total_edges": 14620,
           "connected_edges": 732,
-          "inference_time": 0.047768592834472656,
+          "inference_time": 0.04102373123168945,
           "node_class_counts": {
-            "Page-footer": 3,
-            "Page-header": 2,
-            "Picture": 14,
-            "Section-header": 11,
-            "Text": 56
+            "Page-header": 3,
+            "Picture": 2,
+            "Section-header": 14,
+            "Table": 11,
+            "Title": 56
           },
           "avg_node_confidence": 0.5952011346817017,
           "avg_edge_probability": 0.10351927578449249
@@ -265,16 +265,16 @@
           "total_nodes": 88,
           "total_edges": 15312,
           "connected_edges": 1049,
-          "inference_time": 0.055281639099121094,
+          "inference_time": 0.03660321235656738,
           "node_class_counts": {
-            "Page-footer": 5,
-            "Page-header": 3,
-            "Picture": 12,
-            "Section-header": 9,
-            "Text": 59
+            "Page-header": 5,
+            "Picture": 3,
+            "Section-header": 12,
+            "Table": 9,
+            "Title": 59
           },
-          "avg_node_confidence": 0.5947790741920471,
-          "avg_edge_probability": 0.11752253025770187
+          "avg_node_confidence": 0.5947790145874023,
+          "avg_edge_probability": 0.11752253770828247
         }
       },
       {
@@ -285,16 +285,16 @@
           "total_nodes": 83,
           "total_edges": 13612,
           "connected_edges": 756,
-          "inference_time": 0.045313119888305664,
+          "inference_time": 0.038970947265625,
           "node_class_counts": {
-            "Page-footer": 3,
             "Page-header": 3,
-            "Picture": 14,
-            "Section-header": 13,
-            "Text": 50
+            "Picture": 3,
+            "Section-header": 14,
+            "Table": 13,
+            "Title": 50
           },
           "avg_node_confidence": 0.5895786285400391,
-          "avg_edge_probability": 0.10866709798574448
+          "avg_edge_probability": 0.10866711288690567
         }
       },
       {
@@ -305,16 +305,16 @@
           "total_nodes": 82,
           "total_edges": 13284,
           "connected_edges": 1020,
-          "inference_time": 0.04472088813781738,
+          "inference_time": 0.03414511680603027,
           "node_class_counts": {
-            "Page-footer": 4,
-            "Page-header": 3,
-            "Picture": 13,
-            "Section-header": 10,
-            "Text": 52
+            "Page-header": 4,
+            "Picture": 3,
+            "Section-header": 13,
+            "Table": 10,
+            "Title": 52
           },
-          "avg_node_confidence": 0.5717446208000183,
-          "avg_edge_probability": 0.11993562430143356
+          "avg_node_confidence": 0.5717446804046631,
+          "avg_edge_probability": 0.11993565410375595
         }
       },
       {
@@ -325,16 +325,16 @@
           "total_nodes": 81,
           "total_edges": 12960,
           "connected_edges": 649,
-          "inference_time": 0.054770708084106445,
+          "inference_time": 0.032149314880371094,
           "node_class_counts": {
-            "Page-footer": 4,
-            "Page-header": 2,
-            "Picture": 15,
-            "Section-header": 18,
-            "Text": 42
+            "Page-header": 4,
+            "Picture": 2,
+            "Section-header": 15,
+            "Table": 18,
+            "Title": 42
           },
           "avg_node_confidence": 0.5463210940361023,
-          "avg_edge_probability": 0.09243656694889069
+          "avg_edge_probability": 0.09243657439947128
         }
       },
       {
@@ -345,14 +345,14 @@
           "total_nodes": 33,
           "total_edges": 2112,
           "connected_edges": 400,
-          "inference_time": 0.018596172332763672,
+          "inference_time": 0.01204061508178711,
           "node_class_counts": {
-            "Caption": 3,
-            "Picture": 29,
-            "Section-header": 1
+            "Footnote": 3,
+            "Section-header": 29,
+            "Table": 1
           },
-          "avg_node_confidence": 0.6389892101287842,
-          "avg_edge_probability": 0.2141934484243393
+          "avg_node_confidence": 0.6389718651771545,
+          "avg_edge_probability": 0.21417447924613953
         }
       },
       {
@@ -363,18 +363,18 @@
           "total_nodes": 138,
           "total_edges": 37812,
           "connected_edges": 1334,
-          "inference_time": 0.13808846473693848,
+          "inference_time": 0.07883858680725098,
           "node_class_counts": {
-            "List-item": 21,
-            "Page-footer": 6,
-            "Page-header": 19,
-            "Picture": 9,
-            "Section-header": 18,
-            "Table": 29,
-            "Text": 36
+            "Page-footer": 21,
+            "Page-header": 6,
+            "Picture": 19,
+            "Section-header": 9,
+            "Table": 18,
+            "Text": 29,
+            "Title": 36
           },
-          "avg_node_confidence": 0.47444313764572144,
-          "avg_edge_probability": 0.0855836570262909
+          "avg_node_confidence": 0.4744431972503662,
+          "avg_edge_probability": 0.08558367192745209
         }
       },
       {
@@ -385,16 +385,16 @@
           "total_nodes": 86,
           "total_edges": 14620,
           "connected_edges": 1003,
-          "inference_time": 0.061927080154418945,
+          "inference_time": 0.037106990814208984,
           "node_class_counts": {
-            "Page-footer": 4,
-            "Page-header": 3,
-            "Picture": 13,
-            "Section-header": 11,
-            "Text": 55
+            "Page-header": 4,
+            "Picture": 3,
+            "Section-header": 13,
+            "Table": 11,
+            "Title": 55
           },
-          "avg_node_confidence": 0.5773299336433411,
-          "avg_edge_probability": 0.1164100393652916
+          "avg_node_confidence": 0.5773298740386963,
+          "avg_edge_probability": 0.11641005426645279
         }
       },
       {
@@ -405,17 +405,17 @@
           "total_nodes": 53,
           "total_edges": 5512,
           "connected_edges": 537,
-          "inference_time": 0.029892921447753906,
+          "inference_time": 0.018273353576660156,
           "node_class_counts": {
-            "Caption": 2,
-            "Page-footer": 7,
-            "Page-header": 1,
-            "Picture": 17,
-            "Section-header": 13,
-            "Text": 13
+            "Footnote": 2,
+            "Page-header": 7,
+            "Picture": 1,
+            "Section-header": 17,
+            "Table": 13,
+            "Title": 13
           },
-          "avg_node_confidence": 0.43732690811157227,
-          "avg_edge_probability": 0.16541413962841034
+          "avg_node_confidence": 0.43732577562332153,
+          "avg_edge_probability": 0.1653987467288971
         }
       },
       {
@@ -426,16 +426,16 @@
           "total_nodes": 175,
           "total_edges": 60900,
           "connected_edges": 5284,
-          "inference_time": 0.23474740982055664,
+          "inference_time": 0.12731218338012695,
           "node_class_counts": {
-            "Page-footer": 10,
-            "Page-header": 22,
-            "Picture": 5,
-            "Section-header": 19,
-            "Table": 89,
-            "Text": 30
+            "Page-header": 10,
+            "Picture": 22,
+            "Section-header": 5,
+            "Table": 19,
+            "Text": 89,
+            "Title": 30
           },
-          "avg_node_confidence": 0.5429996848106384,
+          "avg_node_confidence": 0.5429997444152832,
           "avg_edge_probability": 0.12983602285385132
         }
       },
@@ -447,16 +447,16 @@
           "total_nodes": 87,
           "total_edges": 14964,
           "connected_edges": 567,
-          "inference_time": 0.06712174415588379,
+          "inference_time": 0.03308415412902832,
           "node_class_counts": {
-            "Page-footer": 3,
-            "Page-header": 2,
-            "Picture": 13,
-            "Section-header": 20,
-            "Text": 49
+            "Page-header": 3,
+            "Picture": 2,
+            "Section-header": 13,
+            "Table": 20,
+            "Title": 49
           },
-          "avg_node_confidence": 0.5935969948768616,
-          "avg_edge_probability": 0.0903773382306099
+          "avg_node_confidence": 0.5935970544815063,
+          "avg_edge_probability": 0.09037734568119049
         }
       },
       {
@@ -467,17 +467,17 @@
           "total_nodes": 57,
           "total_edges": 6384,
           "connected_edges": 619,
-          "inference_time": 0.03516435623168945,
+          "inference_time": 0.018424510955810547,
           "node_class_counts": {
-            "Caption": 5,
-            "Page-header": 3,
-            "Picture": 31,
-            "Section-header": 11,
-            "Table": 1,
-            "Text": 6
+            "Footnote": 5,
+            "Picture": 3,
+            "Section-header": 31,
+            "Table": 11,
+            "Text": 1,
+            "Title": 6
           },
-          "avg_node_confidence": 0.5077292919158936,
-          "avg_edge_probability": 0.1311822384595871
+          "avg_node_confidence": 0.5077294707298279,
+          "avg_edge_probability": 0.1311822533607483
         }
       },
       {
@@ -488,12 +488,12 @@
           "total_nodes": 92,
           "total_edges": 16744,
           "connected_edges": 10114,
-          "inference_time": 0.06752991676330566,
+          "inference_time": 0.04363417625427246,
           "node_class_counts": {
-            "Picture": 92
+            "Section-header": 92
           },
-          "avg_node_confidence": 0.9153478145599365,
-          "avg_edge_probability": 0.5989391207695007
+          "avg_node_confidence": 0.915330708026886,
+          "avg_edge_probability": 0.5989304780960083
         }
       },
       {
@@ -504,17 +504,17 @@
           "total_nodes": 141,
           "total_edges": 39480,
           "connected_edges": 1591,
-          "inference_time": 0.13325905799865723,
+          "inference_time": 0.08141684532165527,
           "node_class_counts": {
-            "List-item": 6,
-            "Page-footer": 7,
-            "Page-header": 15,
-            "Picture": 8,
-            "Section-header": 25,
-            "Table": 35,
-            "Text": 45
+            "Page-footer": 6,
+            "Page-header": 7,
+            "Picture": 15,
+            "Section-header": 8,
+            "Table": 25,
+            "Text": 35,
+            "Title": 45
           },
-          "avg_node_confidence": 0.46734148263931274,
+          "avg_node_confidence": 0.4673416018486023,
           "avg_edge_probability": 0.08587564527988434
         }
       },
@@ -526,15 +526,15 @@
           "total_nodes": 84,
           "total_edges": 13944,
           "connected_edges": 480,
-          "inference_time": 0.05682253837585449,
+          "inference_time": 0.03796100616455078,
           "node_class_counts": {
-            "Page-footer": 4,
-            "Page-header": 3,
-            "Picture": 13,
-            "Section-header": 21,
-            "Text": 43
+            "Page-header": 4,
+            "Picture": 3,
+            "Section-header": 13,
+            "Table": 21,
+            "Title": 43
           },
-          "avg_node_confidence": 0.5633766651153564,
+          "avg_node_confidence": 0.5633766055107117,
           "avg_edge_probability": 0.08662769943475723
         }
       },
@@ -546,16 +546,16 @@
           "total_nodes": 74,
           "total_edges": 10804,
           "connected_edges": 427,
-          "inference_time": 0.04577469825744629,
+          "inference_time": 0.02898859977722168,
           "node_class_counts": {
-            "Page-footer": 4,
-            "Page-header": 2,
-            "Picture": 14,
+            "Page-header": 4,
+            "Picture": 2,
             "Section-header": 14,
-            "Text": 40
+            "Table": 14,
+            "Title": 40
           },
-          "avg_node_confidence": 0.5461359620094299,
-          "avg_edge_probability": 0.09252938628196716
+          "avg_node_confidence": 0.5461360216140747,
+          "avg_edge_probability": 0.09252940118312836
         }
       },
       {
@@ -566,13 +566,13 @@
           "total_nodes": 88,
           "total_edges": 15312,
           "connected_edges": 705,
-          "inference_time": 0.0581209659576416,
+          "inference_time": 0.03624320030212402,
           "node_class_counts": {
-            "Page-footer": 5,
-            "Page-header": 4,
-            "Picture": 12,
+            "Page-header": 5,
+            "Picture": 4,
             "Section-header": 12,
-            "Text": 55
+            "Table": 12,
+            "Title": 55
           },
           "avg_node_confidence": 0.5613006949424744,
           "avg_edge_probability": 0.09867191314697266
@@ -586,13 +586,13 @@
           "total_nodes": 75,
           "total_edges": 11100,
           "connected_edges": 467,
-          "inference_time": 0.046987056732177734,
+          "inference_time": 0.03157496452331543,
           "node_class_counts": {
-            "Page-footer": 4,
-            "Page-header": 3,
-            "Picture": 13,
-            "Section-header": 19,
-            "Text": 36
+            "Page-header": 4,
+            "Picture": 3,
+            "Section-header": 13,
+            "Table": 19,
+            "Title": 36
           },
           "avg_node_confidence": 0.5514219403266907,
           "avg_edge_probability": 0.0899372473359108
@@ -606,17 +606,17 @@
           "total_nodes": 77,
           "total_edges": 11704,
           "connected_edges": 677,
-          "inference_time": 0.05138230323791504,
+          "inference_time": 0.035051584243774414,
           "node_class_counts": {
-            "Page-footer": 6,
-            "Page-header": 5,
-            "Picture": 21,
-            "Section-header": 11,
-            "Table": 20,
-            "Text": 14
+            "Page-header": 6,
+            "Picture": 5,
+            "Section-header": 21,
+            "Table": 11,
+            "Text": 20,
+            "Title": 14
           },
-          "avg_node_confidence": 0.4794943630695343,
-          "avg_edge_probability": 0.10307561606168747
+          "avg_node_confidence": 0.47955718636512756,
+          "avg_edge_probability": 0.10309379547834396
         }
       },
       {
@@ -627,16 +627,16 @@
           "total_nodes": 76,
           "total_edges": 11400,
           "connected_edges": 621,
-          "inference_time": 0.04749441146850586,
+          "inference_time": 0.03448772430419922,
           "node_class_counts": {
-            "Page-footer": 7,
-            "Page-header": 1,
-            "Picture": 7,
-            "Section-header": 12,
-            "Text": 49
+            "Page-header": 7,
+            "Picture": 1,
+            "Section-header": 7,
+            "Table": 12,
+            "Title": 49
           },
-          "avg_node_confidence": 0.4455093443393707,
-          "avg_edge_probability": 0.10518776625394821
+          "avg_node_confidence": 0.4445526599884033,
+          "avg_edge_probability": 0.10537023842334747
         }
       },
       {
@@ -647,16 +647,16 @@
           "total_nodes": 114,
           "total_edges": 25764,
           "connected_edges": 837,
-          "inference_time": 0.08629894256591797,
+          "inference_time": 0.05718231201171875,
           "node_class_counts": {
-            "Page-footer": 5,
-            "Page-header": 16,
-            "Picture": 12,
-            "Section-header": 35,
-            "Text": 46
+            "Page-header": 5,
+            "Picture": 16,
+            "Section-header": 12,
+            "Table": 35,
+            "Title": 46
           },
           "avg_node_confidence": 0.5052486062049866,
-          "avg_edge_probability": 0.07287278026342392
+          "avg_edge_probability": 0.07287279516458511
         }
       },
       {
@@ -667,16 +667,16 @@
           "total_nodes": 92,
           "total_edges": 16744,
           "connected_edges": 1094,
-          "inference_time": 0.06491255760192871,
+          "inference_time": 0.04545235633850098,
           "node_class_counts": {
-            "Page-footer": 4,
             "Page-header": 4,
-            "Picture": 13,
-            "Section-header": 9,
-            "Text": 62
+            "Picture": 4,
+            "Section-header": 13,
+            "Table": 9,
+            "Title": 62
           },
-          "avg_node_confidence": 0.5790033340454102,
-          "avg_edge_probability": 0.1128806471824646
+          "avg_node_confidence": 0.5790032744407654,
+          "avg_edge_probability": 0.1128806546330452
         }
       },
       {
@@ -687,15 +687,15 @@
           "total_nodes": 80,
           "total_edges": 12640,
           "connected_edges": 523,
-          "inference_time": 0.06420660018920898,
+          "inference_time": 0.03562307357788086,
           "node_class_counts": {
-            "Page-footer": 4,
             "Page-header": 4,
-            "Picture": 16,
-            "Section-header": 23,
-            "Text": 33
+            "Picture": 4,
+            "Section-header": 16,
+            "Table": 23,
+            "Title": 33
           },
-          "avg_node_confidence": 0.5320086479187012,
+          "avg_node_confidence": 0.5320087671279907,
           "avg_edge_probability": 0.08526874333620071
         }
       },
@@ -707,14 +707,14 @@
           "total_nodes": 34,
           "total_edges": 2244,
           "connected_edges": 394,
-          "inference_time": 0.017386674880981445,
+          "inference_time": 0.012595415115356445,
           "node_class_counts": {
-            "Caption": 2,
-            "Picture": 31,
-            "Section-header": 1
+            "Footnote": 2,
+            "Section-header": 31,
+            "Table": 1
           },
-          "avg_node_confidence": 0.6518754959106445,
-          "avg_edge_probability": 0.2036081701517105
+          "avg_node_confidence": 0.6518521308898926,
+          "avg_edge_probability": 0.20358966290950775
         }
       },
       {
@@ -725,15 +725,15 @@
           "total_nodes": 73,
           "total_edges": 10512,
           "connected_edges": 672,
-          "inference_time": 0.0445706844329834,
+          "inference_time": 0.036330223083496094,
           "node_class_counts": {
-            "Page-footer": 5,
-            "Page-header": 4,
-            "Picture": 22,
-            "Section-header": 18,
-            "Text": 24
+            "Page-header": 5,
+            "Picture": 4,
+            "Section-header": 22,
+            "Table": 18,
+            "Title": 24
           },
-          "avg_node_confidence": 0.5265384316444397,
+          "avg_node_confidence": 0.5265384912490845,
           "avg_edge_probability": 0.10196250677108765
         }
       },
@@ -745,13 +745,13 @@
           "total_nodes": 92,
           "total_edges": 16744,
           "connected_edges": 10174,
-          "inference_time": 0.061826467514038086,
+          "inference_time": 0.050066232681274414,
           "node_class_counts": {
-            "Picture": 91,
-            "Table": 1
+            "Section-header": 91,
+            "Text": 1
           },
-          "avg_node_confidence": 0.9167560935020447,
-          "avg_edge_probability": 0.6016795635223389
+          "avg_node_confidence": 0.9167448878288269,
+          "avg_edge_probability": 0.6016728281974792
         }
       },
       {
@@ -762,13 +762,13 @@
           "total_nodes": 108,
           "total_edges": 23112,
           "connected_edges": 1521,
-          "inference_time": 0.08876657485961914,
+          "inference_time": 0.0536656379699707,
           "node_class_counts": {
-            "Page-footer": 8,
-            "Page-header": 3,
-            "Picture": 10,
-            "Section-header": 20,
-            "Text": 67
+            "Page-header": 8,
+            "Picture": 3,
+            "Section-header": 10,
+            "Table": 20,
+            "Title": 67
           },
           "avg_node_confidence": 0.4804878234863281,
           "avg_edge_probability": 0.10454151779413223
@@ -782,16 +782,16 @@
           "total_nodes": 86,
           "total_edges": 14620,
           "connected_edges": 422,
-          "inference_time": 0.06135106086730957,
+          "inference_time": 0.0343785285949707,
           "node_class_counts": {
-            "Page-footer": 3,
-            "Page-header": 2,
-            "Picture": 13,
-            "Section-header": 20,
-            "Text": 48
+            "Page-header": 3,
+            "Picture": 2,
+            "Section-header": 13,
+            "Table": 20,
+            "Title": 48
           },
-          "avg_node_confidence": 0.5635915994644165,
-          "avg_edge_probability": 0.08380096405744553
+          "avg_node_confidence": 0.5635917782783508,
+          "avg_edge_probability": 0.08380097150802612
         }
       },
       {
@@ -802,16 +802,16 @@
           "total_nodes": 78,
           "total_edges": 12012,
           "connected_edges": 593,
-          "inference_time": 0.05209612846374512,
+          "inference_time": 0.029552936553955078,
           "node_class_counts": {
-            "Page-footer": 3,
-            "Page-header": 2,
-            "Picture": 15,
-            "Section-header": 13,
-            "Text": 45
+            "Page-header": 3,
+            "Picture": 2,
+            "Section-header": 15,
+            "Table": 13,
+            "Title": 45
           },
           "avg_node_confidence": 0.5441408157348633,
-          "avg_edge_probability": 0.09745024144649506
+          "avg_edge_probability": 0.09745024889707565
         }
       },
       {
@@ -822,13 +822,13 @@
           "total_nodes": 81,
           "total_edges": 12960,
           "connected_edges": 763,
-          "inference_time": 0.05367875099182129,
+          "inference_time": 0.029709339141845703,
           "node_class_counts": {
-            "Page-footer": 5,
-            "Page-header": 3,
-            "Picture": 13,
-            "Section-header": 14,
-            "Text": 46
+            "Page-header": 5,
+            "Picture": 3,
+            "Section-header": 13,
+            "Table": 14,
+            "Title": 46
           },
           "avg_node_confidence": 0.5536154508590698,
           "avg_edge_probability": 0.10220164805650711
@@ -842,16 +842,16 @@
           "total_nodes": 81,
           "total_edges": 12960,
           "connected_edges": 489,
-          "inference_time": 0.05238771438598633,
+          "inference_time": 0.0394589900970459,
           "node_class_counts": {
-            "Page-footer": 5,
-            "Page-header": 2,
-            "Picture": 21,
+            "Page-header": 5,
+            "Picture": 2,
             "Section-header": 21,
-            "Text": 32
+            "Table": 21,
+            "Title": 32
           },
-          "avg_node_confidence": 0.5177416205406189,
-          "avg_edge_probability": 0.07759734988212585
+          "avg_node_confidence": 0.5177416801452637,
+          "avg_edge_probability": 0.07759735733270645
         }
       },
       {
@@ -862,13 +862,13 @@
           "total_nodes": 90,
           "total_edges": 16020,
           "connected_edges": 10110,
-          "inference_time": 0.06609773635864258,
+          "inference_time": 0.04003453254699707,
           "node_class_counts": {
-            "Picture": 89,
-            "Table": 1
+            "Section-header": 89,
+            "Text": 1
           },
-          "avg_node_confidence": 0.9281800985336304,
-          "avg_edge_probability": 0.6253546476364136
+          "avg_node_confidence": 0.9281721115112305,
+          "avg_edge_probability": 0.6253499984741211
         }
       },
       {
@@ -879,16 +879,16 @@
           "total_nodes": 111,
           "total_edges": 24420,
           "connected_edges": 555,
-          "inference_time": 0.08643484115600586,
+          "inference_time": 0.05743217468261719,
           "node_class_counts": {
-            "Page-footer": 3,
-            "Page-header": 14,
-            "Picture": 13,
-            "Section-header": 26,
-            "Text": 55
+            "Page-header": 3,
+            "Picture": 14,
+            "Section-header": 13,
+            "Table": 26,
+            "Title": 55
           },
-          "avg_node_confidence": 0.5261114835739136,
-          "avg_edge_probability": 0.07512694597244263
+          "avg_node_confidence": 0.5261115431785583,
+          "avg_edge_probability": 0.07512695342302322
         }
       },
       {
@@ -899,15 +899,15 @@
           "total_nodes": 78,
           "total_edges": 12012,
           "connected_edges": 579,
-          "inference_time": 0.0500025749206543,
+          "inference_time": 0.03440237045288086,
           "node_class_counts": {
-            "Page-footer": 5,
-            "Page-header": 2,
-            "Picture": 20,
-            "Section-header": 17,
-            "Text": 34
+            "Page-header": 5,
+            "Picture": 2,
+            "Section-header": 20,
+            "Table": 17,
+            "Title": 34
           },
-          "avg_node_confidence": 0.5109918713569641,
+          "avg_node_confidence": 0.5109919309616089,
           "avg_edge_probability": 0.08972421288490295
         }
       },
@@ -918,18 +918,18 @@
         "stats": {
           "total_nodes": 113,
           "total_edges": 25312,
-          "connected_edges": 1321,
-          "inference_time": 0.08791470527648926,
+          "connected_edges": 1323,
+          "inference_time": 0.0604252815246582,
           "node_class_counts": {
-            "Page-footer": 8,
-            "Page-header": 2,
-            "Picture": 12,
-            "Section-header": 8,
-            "Table": 80,
-            "Text": 3
+            "Page-header": 8,
+            "Picture": 2,
+            "Section-header": 12,
+            "Table": 8,
+            "Text": 80,
+            "Title": 3
           },
-          "avg_node_confidence": 0.5743800401687622,
-          "avg_edge_probability": 0.09598525613546371
+          "avg_node_confidence": 0.5751096606254578,
+          "avg_edge_probability": 0.09608877450227737
         }
       },
       {
@@ -939,17 +939,17 @@
         "stats": {
           "total_nodes": 132,
           "total_edges": 34584,
-          "connected_edges": 2452,
-          "inference_time": 0.12774157524108887,
+          "connected_edges": 2451,
+          "inference_time": 0.08245444297790527,
           "node_class_counts": {
-            "Page-footer": 8,
-            "Page-header": 3,
-            "Picture": 7,
-            "Section-header": 3,
-            "Table": 111
+            "Page-header": 8,
+            "Picture": 3,
+            "Section-header": 7,
+            "Table": 3,
+            "Text": 111
           },
-          "avg_node_confidence": 0.8002544641494751,
-          "avg_edge_probability": 0.12273114919662476
+          "avg_node_confidence": 0.8001418709754944,
+          "avg_edge_probability": 0.12272412329912186
         }
       },
       {
@@ -959,17 +959,17 @@
         "stats": {
           "total_nodes": 144,
           "total_edges": 41184,
-          "connected_edges": 2778,
-          "inference_time": 0.1512458324432373,
+          "connected_edges": 2779,
+          "inference_time": 0.08703112602233887,
           "node_class_counts": {
-            "Page-footer": 8,
-            "Page-header": 3,
-            "Picture": 7,
-            "Section-header": 3,
-            "Table": 123
+            "Page-header": 8,
+            "Picture": 3,
+            "Section-header": 7,
+            "Table": 3,
+            "Text": 123
           },
-          "avg_node_confidence": 0.8298019766807556,
-          "avg_edge_probability": 0.12325459718704224
+          "avg_node_confidence": 0.8296539187431335,
+          "avg_edge_probability": 0.12323880195617676
         }
       }
     ],
@@ -979,19 +979,19 @@
       "successful_pages": 48,
       "failed_pages": 2,
       "total_nodes": 4395,
-      "total_connected_edges": 78392,
-      "avg_inference_time": 0.07617682218551636,
-      "total_extraction_time": 7.690004110336304,
-      "total_inference_time": 3.656487464904785,
+      "total_connected_edges": 78388,
+      "avg_inference_time": 0.04658032457033793,
+      "total_extraction_time": 4.559861660003662,
+      "total_inference_time": 2.2358555793762207,
       "class_distribution": {
-        "Picture": 972,
-        "Page-footer": 211,
-        "Page-header": 192,
-        "Section-header": 655,
-        "Table": 583,
-        "Text": 1734,
-        "Caption": 16,
-        "List-item": 32
+        "Section-header": 972,
+        "Page-header": 211,
+        "Picture": 192,
+        "Table": 655,
+        "Text": 583,
+        "Title": 1734,
+        "Footnote": 16,
+        "Page-footer": 32
       }
     },
     "success": true

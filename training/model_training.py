@@ -1,6 +1,11 @@
 import logging
 import random
 import time
+import os
+import sys
+
+# Add parent directory to path to import core modules
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 import networkx as nx
 import numpy as np
@@ -12,9 +17,9 @@ import torch_geometric.nn.inits
 import tqdm
 from tqdm.contrib.logging import logging_redirect_tqdm
 
-from GLAM.common import PageNodes, PageEdges
-from GLAM.models import GLAMGraphNetwork
-from dln_glam_prepare import DLNDataset, CLASSES_MAP
+from core.common import PageNodes, PageEdges
+from core.models import GLAMGraphNetwork
+from data_preparation import DLNDataset, CLASSES_MAP
 
 
 logger = logging.getLogger(__name__)

@@ -6,6 +6,7 @@ Debug script to investigate PDF parsing issues
 import logging
 import os
 import sys
+from typing import Any, Dict, List
 
 import fitz  # PyMuPDF
 
@@ -17,7 +18,7 @@ INVALID_UNICODE = chr(0xFFFD)
 
 def debug_pdf_parsing():
     """Debug PDF parsing to see what's happening"""
-    pdf_path = "examples/pdf/book law.pdf"
+    pdf_path = "examples/book law.pdf"
     
     if not os.path.exists(pdf_path):
         logger.error(f"PDF file not found: {pdf_path}")
@@ -30,7 +31,7 @@ def debug_pdf_parsing():
         
         # Check first few pages
         for page_num in range(min(3, len(doc))):
-            page = doc[page_num]
+            page: Any = doc[page_num]
             logger.info(f"\\n=== Debugging Page {page_num + 1} ===")
             
             # Get page dimensions
@@ -39,7 +40,7 @@ def debug_pdf_parsing():
             
             # Try different text extraction methods
             logger.info("\\n--- Method 1: Simple text extraction ---")
-            simple_text = page.get_text()
+            simple_text: str = page.get_text()
             logger.info(f"Simple text length: {len(simple_text)}")
             if simple_text.strip():
                 logger.info(f"First 200 chars: {repr(simple_text[:200])}")
@@ -47,11 +48,7 @@ def debug_pdf_parsing():
                 logger.warning("No text found with simple extraction")
             
             logger.info("\\n--- Method 2: Dict extraction ---")
-            page_dict = fitz.utils.get_text(
-                page=page,
-                option="dict",
-                flags=fitz.TEXT_PRESERVE_IMAGES
-            )
+            page_dict: Dict[str, Any] = page.get_text("dict", flags=fitz.TEXT_PRESERVE_IMAGES)
             
             logger.info(f"Page dict keys: {list(page_dict.keys())}")
             logger.info(f"Number of blocks: {len(page_dict.get('blocks', []))}")
@@ -105,14 +102,14 @@ def debug_pdf_parsing():
                 
                 # Method with different flags
                 logger.info("Trying with TEXT_PRESERVE_WHITESPACE flag...")
-                alt_dict = page.get_text("dict", flags=fitz.TEXT_PRESERVE_WHITESPACE)
+                alt_dict: Dict[str, Any] = page.get_text("dict", flags=fitz.TEXT_PRESERVE_WHITESPACE)
                 alt_blocks = len(alt_dict.get("blocks", []))
                 logger.info(f"Alternative method found {alt_blocks} blocks")
                 
                 # Try raw text blocks
                 logger.info("Trying get_text_blocks()...")
                 try:
-                    text_blocks_list = page.get_text_blocks()
+                    text_blocks_list: List[Any] = page.get_text_blocks()
                     logger.info(f"get_text_blocks() returned {len(text_blocks_list)} blocks")
                     for i, block in enumerate(text_blocks_list[:3]):
                         logger.info(f"  Block {i}: {repr(block[4][:100])}")  # text is at index 4

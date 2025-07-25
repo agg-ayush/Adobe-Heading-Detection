@@ -1,6 +1,6 @@
 # PDF Document Structure Extractor
 
-A high-performance solution that extracts document structure (title and hierarchical headings) from PDF files using the GLAM (Graph-based Layout Analysis Model).
+A high-performance tool that extracts document structure (title and hierarchical headings) from PDF files using the GLAM (Graph-based Layout Analysis Model).
 
 ## Features
 
@@ -19,36 +19,67 @@ A high-performance solution that extracts document structure (title and hierarch
 
 ## Installation
 
-1. Ensure all dependencies are installed:
-```bash
-pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
-pip install PyMuPDF torch-geometric networkx shapely scipy numpy
-```
+1. **Install core dependencies**:
+   ```bash
+   pip install -r requirements.txt
+   ```
+   
+   **Note**: The requirements.txt includes only core packages needed for heading detection. Training-specific packages are commented out to keep the installation lightweight.
 
-2. Verify the model file exists:
-```bash
-ls models/glam_dln.pt  # Should show the model file (~60MB)
-```
+2. **For training (if needed)**:
+   Uncomment the training dependencies in `requirements.txt` and reinstall:
+   ```bash
+   # Uncomment training packages in requirements.txt, then:
+   pip install -r requirements.txt
+   ```
+
+3. **Verify installation**:
+   ```bash
+   python -c "import torch, fitz, networkx; print('✅ Dependencies installed successfully!')"
+   ```
+
+## Quick Start
+
+1. **Extract document structure (title + outline format)**:
+   ```bash
+   python document_parser.py "examples/sample.pdf" output.json --max-pages 50
+   ```
 
 ## Usage
 
 ### Command Line
 
 ```bash
-# Basic usage
-python extract_structure.py input.pdf output.json
+# Main document structure extraction (title + outline)
+python document_parser.py input.pdf output.json
 
 # Process specific number of pages
-python extract_structure.py document.pdf result.json --max-pages 30
+python document_parser.py document.pdf result.json --max-pages 30
 
 # Verbose output
-python extract_structure.py sample.pdf output.json --verbose
+python document_parser.py sample.pdf output.json --verbose
+
+# Alternative heading detection
+python heading_detector.py --pdf "input.pdf" --max-pages 50
+
+# Debug PDF content
+python pdf_debugger.py input.pdf
+```
+
+### Example Usage
+
+```bash
+# Extract structure from example PDFs
+python document_parser.py "examples/sample.pdf" output.json --max-pages 50
+
+# Quick heading detection
+python heading_detector.py --pdf "examples/document.pdf" --max-pages 20
 ```
 
 ### Python API
 
 ```python
-from extract_structure import PDFStructureExtractor
+from document_parser import PDFStructureExtractor
 
 # Initialize extractor
 extractor = PDFStructureExtractor("models/glam_dln.pt")
@@ -102,18 +133,19 @@ The extractor produces JSON in the exact required format:
 
 ```
 glam/
-├── extract_structure.py      # Main extraction script
+├── document_parser.py       # Main extraction script (title + outline)
+├── heading_detector.py      # Fast heading detection
+├── inference.py            # Core inference functionality
+├── pdf_debugger.py         # PDF debugging utilities
 ├── models/
-│   └── glam_dln.pt          # Trained GLAM model weights
-├── GLAM/
-│   ├── __init__.py
-│   ├── common.py            # Data structures and utilities
-│   └── models.py            # GLAM neural network architecture
-├── dln_glam_prepare.py      # Class definitions and mappings
-├── requirements.txt         # Python dependencies
-└── examples/
-    └── pdf/
-        └── book law.pdf     # Sample test document
+│   └── glam_dln.pt         # Trained GLAM model weights (~60MB)
+├── core/                   # Core GLAM module
+│   ├── common.py           # Data structures and utilities
+│   └── models.py           # Neural network architecture
+├── training/               # Training scripts
+├── tests/                  # Test variants
+├── requirements.txt        # Python dependencies
+└── examples/               # Sample PDF documents
 ```
 
 ## Optimization Features
@@ -154,92 +186,24 @@ python -c "import fitz; print(fitz.Document('your.pdf').page_count)"
 
 ## Example Output
 
-For a legal document:
+For a document:
 ```json
 {
-  "title": "Law No. (6) of 2019",
+  "title": "Document Title",
   "outline": [
-    { "level": "H1", "text": "Ownership of Jointly Owned Real Property", "page": 6 },
-    { "level": "H2", "text": "Jointly Owned Real Property", "page": 7 },
-    { "level": "H2", "text": "Major Project", "page": 7 },
-    { "level": "H3", "text": "Hotel Project", "page": 7 }
+    { "level": "H1", "text": "Introduction", "page": 1 },
+    { "level": "H2", "text": "Overview", "page": 2 },
+    { "level": "H2", "text": "Main Content", "page": 3 },
+    { "level": "H3", "text": "Sub Section", "page": 4 }
   ]
 }
 ```
 
 ## License
 
-This project uses components with dual licensing:
-- Apache 2.0 License
-- MIT License
-
-See LICENSE-APACHE-2.0 and LICENSE-MIT files for details.
-
----
-
-**Ready for production use!** 🚀
-
-```shell
-python dln_glam_prepare.py --dataset-path /home/i/dataset/DocLayNet/raw/DocLayNet/DATA --output-path /home/i/dataset/DocLayNet/glam
-```
-
-## Training
-
-Some paths are hardcoded in `dln_glam_train.py`. Please, change them before training.
-
-```shell
-python dln_glam_train.py
-```
-
-## Evaluation
-
-Please, change paths in `dln_glam_evaluate.py` before evaluation.
-
-```shell
-python dln_glam_inference.py
-```
-
-## Features
-
-- Simple architecture.
-- Fast. With batch size of 128 examples it takes 00:11:35 for training on 507 batches and 00:02:17 for validation on 48 batches on CPU per 1 epoch.
-
-## Limitations
-
-- No reading order prediction, though it is not objective of this model, and dataset does not contain such information.
-
-## TODO
-
-- Implement mAP@IoU\[0.5:0.05:0.95] metric because there is no way to compare with other models yet.
-- Implement input features normalization.
-- Implement text and image features.
-- Batching in inference. Currently, only one page is processed at a time.
-- W&B integration for training.
-- Some text spans in PDF contains unlabelled font glyphs. Currently, whole span is passed to OCR. It is faster to OCR font glyphs separately and then merge them into spans.
-
-## Alternatives
-
-* [Kensho Extract](https://kensho.com/extract) (GLAM author's SaaS closed-source implementation)
-* [Unstructured](https://github.com/Unstructured-IO/unstructured)
-
-## License
-
-> [!CAUTION]
-> Dependency PyMuPDF with AGPL-3.0 license is extensively used in the code and requires to use AGPL-3.0 license, see https://github.com/ivanstepanovftw/glam/issues/2
-
-Licensed under either of
-
-* Apache License, Version 2.0, ([LICENSE-APACHE-2.0](LICENSE-APACHE-2.0) or http://www.apache.org/licenses/LICENSE-2.0)
-* MIT license ([LICENSE-MIT](LICENSE-MIT) or http://opensource.org/licenses/MIT)
-
-at your option.
-
-## Contribution
-
-Unless you explicitly state otherwise, any contribution intentionally submitted
-for inclusion in the work by you, as defined in the Apache-2.0 license, shall be dual licensed as above, without any
-additional terms or conditions.
+Licensed under the Apache 2.0 License - see the [LICENSE](LICENSE) file for details.
 
 ## Acknowledgements
 
-- Jilin Wang, Michael Krumdick, Baojia Tong, Hamima Halim, Maxim Sokolov, Vadym Barda, Delphine Vendryes, and Chris Tanner. "A Graphical Approach to Document Layout Analysis". 2023. arXiv: [2308.02051](https://arxiv.org/abs/2308.02051)
+Based on the GLAM (Graph-based Layout Analysis Model) research:
+- Jilin Wang et al. "A Graphical Approach to Document Layout Analysis". 2023. arXiv: [2308.02051](https://arxiv.org/abs/2308.02051)

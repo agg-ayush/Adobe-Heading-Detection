@@ -8,7 +8,11 @@ import logging
 import os
 import sys
 import time
+from typing import Any, Dict
 from typing import List, Tuple, Dict, Any
+
+# Add parent directory to path to import from training
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 import networkx as nx
 import numpy as np
@@ -18,9 +22,9 @@ from torch_geometric.data import Data
 import fitz  # PyMuPDF
 
 # Import GLAM modules
-from GLAM.common import PageEdges, ImageNode, TextNode, get_bytes_per_pixel, PageNodes
-from GLAM.models import GLAMGraphNetwork
-from dln_glam_prepare import CLASSES_MAP
+from core.common import PageEdges, ImageNode, TextNode, get_bytes_per_pixel, PageNodes
+from core.models import GLAMGraphNetwork
+from glam_classes import CLASSES_MAP
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -35,7 +39,7 @@ def test_glam_model():
     
     # Configuration
     model_path = "models/glam_dln.pt"
-    pdf_path = "examples/pdf/book law.pdf"
+    pdf_path = "examples/book law.pdf"
     
     # Check if files exist
     if not os.path.exists(model_path):
@@ -77,17 +81,13 @@ def test_glam_model():
         
         # Try first few pages to find one with content
         for page_num in range(min(5, len(doc))):
-            page = doc[page_num]
+            page: Any = doc[page_num]
             logger.info(f"Trying page {page_num + 1} of {len(doc)}")
             
             # Extract nodes from page
             temp_page_nodes = PageNodes()
         
-            page_dict = fitz.utils.get_text(
-                page=page,
-                option="dict",
-                flags=fitz.TEXT_PRESERVE_IMAGES
-            )
+            page_dict: Dict[str, Any] = page.get_text("dict", flags=fitz.TEXT_PRESERVE_IMAGES)
             
             text_blocks = 0
             image_blocks = 0
@@ -199,7 +199,7 @@ def test_glam_model():
         # Node classification statistics
         node_class_counts = {}
         for pred in node_predictions:
-            class_id = pred.item()
+            class_id = int(pred.item())  # Convert to int for dictionary lookup
             class_name = CLASSES_MAP.get(class_id, f"Unknown_{class_id}")
             node_class_counts[class_name] = node_class_counts.get(class_name, 0) + 1
         
@@ -214,7 +214,7 @@ def test_glam_model():
                 # Determine cluster class by majority vote
                 cluster_node_scores = node_class_scores[torch.tensor(list(cluster))]
                 cluster_class_id = torch.argmax(cluster_node_scores.sum(dim=0)).item()
-                cluster_class_name = CLASSES_MAP.get(cluster_class_id, f"Unknown_{cluster_class_id}")
+                cluster_class_name = CLASSES_MAP.get(int(cluster_class_id), f"Unknown_{cluster_class_id}")
                 
                 logger.info(f"  Cluster {i+1}: {len(cluster)} nodes, class: {cluster_class_name}")
         

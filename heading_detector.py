@@ -9,7 +9,7 @@ import os
 import sys
 import time
 import json
-from typing import List, Dict, Any
+from typing import List, Dict, Any, Optional
 
 import torch
 import networkx as nx
@@ -19,9 +19,9 @@ import numpy as np
 import fitz  # PyMuPDF
 
 # Import GLAM modules
-from GLAM.common import PageEdges, ImageNode, TextNode, PageNodes
-from GLAM.models import GLAMGraphNetwork
-from dln_glam_prepare import CLASSES_MAP
+from core.common import PageEdges, ImageNode, TextNode, PageNodes
+from core.models import GLAMGraphNetwork
+from glam_classes import CLASSES_MAP
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -37,7 +37,7 @@ class SimpleOptimizedGLAMTester:
         """Initialize the tester"""
         self.model_path = model_path
         self.device = "cuda" if torch.cuda.is_available() else "cpu"
-        self.model = None
+        self.model: Optional[GLAMGraphNetwork] = None
         self.classes_map = CLASSES_MAP
         
         # Optimization settings
@@ -54,12 +54,13 @@ class SimpleOptimizedGLAMTester:
                 node_features_len=PageNodes.features_len,
                 edge_feature_len=PageEdges.features_len,
                 initial_hidden_len=512,
-                node_classes_len=len(self.classes_map)
+                node_classes_len=12  # Updated to match checkpoint
             )
             
             state_dict = torch.load(self.model_path, map_location=self.device)
             self.model.load_state_dict(state_dict)
             self.model = self.model.to(self.device)
+            assert self.model is not None, "Model should be loaded at this point"
             self.model.eval()
             
             # Basic optimizations
@@ -146,6 +147,7 @@ class SimpleOptimizedGLAMTester:
             # Fast inference
             start_time = time.time()
             with torch.no_grad():
+                assert self.model is not None, "Model must be loaded before inference"
                 node_class_scores, edge_class_scores = self.model(data)
             inference_time = time.time() - start_time
             
@@ -176,7 +178,7 @@ class SimpleOptimizedGLAMTester:
                 "error": None,
                 "stats": {
                     "total_nodes": len(page_nodes),
-                    "total_edges": data.edge_index.shape[1],
+                    "total_edges": data.edge_index.shape[1] if data.edge_index is not None else 0,
                     "connected_edges": connected_edges,
                     "inference_time": inference_time,
                     "node_class_counts": node_class_counts,
@@ -282,9 +284,9 @@ def main():
     """Main function"""
     import argparse
     
-    parser = argparse.ArgumentParser(description="Simple optimized batch test for GLAM model")
+    parser = argparse.ArgumentParser(description="Fast heading detection for GLAM model")
     parser.add_argument("--model", default="models/glam_dln.pt", help="Path to model file")
-    parser.add_argument("--pdf", default="examples/pdf/book law.pdf", help="PDF file to test")
+    parser.add_argument("--pdf", default="examples/book law.pdf", help="PDF file to test")
     parser.add_argument("--max-pages", type=int, default=50, help="Max pages to process")
     parser.add_argument("--output", default="test_report_fast.json", help="Output report file")
     parser.add_argument("--max-nodes", type=int, default=300, help="Max nodes per page")

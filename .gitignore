@@ -1,2 +1,37 @@
+# Python
 __pycache__/
-GLAM/__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+# Virtual environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Output files
+*.json
+output/
+results/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Model checkpoints (if not tracked)
+# models/*.pt

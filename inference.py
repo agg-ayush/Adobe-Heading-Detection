@@ -1,3 +1,4 @@
+import argparse
 import logging
 import math
 import re
@@ -20,9 +21,9 @@ import models
 import fitz  # PyMuPDF
 from PIL import Image
 
-from GLAM.common import PageEdges, ImageNode, TextNode, get_bytes_per_pixel, PageNodes
-from GLAM.models import GLAMGraphNetwork
-from dln_glam_prepare import CLASSES_MAP
+from core.common import PageEdges, ImageNode, TextNode, get_bytes_per_pixel, PageNodes
+from core.models import GLAMGraphNetwork
+from glam_classes import CLASSES_MAP
 
 INVALID_UNICODE = chr(0xFFFD)
 EasyocrTextResult = namedtuple("EasyocrTextResult", ["bbox", "text", "confidence"])
@@ -31,18 +32,32 @@ logger = logging.getLogger(__name__)
 
 
 def main():
-    pdf_filepath = "examples/pdf/book law.pdf"
-    model_filepath = "models/glam_dln.pt"
-    easyocr_languages = ["en", "ar"]
-    TESSDATA_PREFIX = "/usr/share/tesseract/tessdata"
-    tesserocr_languages = ["eng", "ara"]
+    # Replace hardcoded paths and settings with CLI arguments
+    parser = argparse.ArgumentParser(description="Run GLAM inference on a PDF document")
+    parser.add_argument("input_pdf", help="Input PDF file path")
+    parser.add_argument("model", help="Path to GLAM model file")
+    parser.add_argument("--easyocr-langs", nargs="+", default=["en", "ar"], dest="easyocr_languages",
+                        help="Languages for EasyOCR reader")
+    parser.add_argument("--tesserocr-langs", nargs="+", default=["eng", "ara"], dest="tesserocr_languages",
+                        help="Languages for Tesserocr API")
+    parser.add_argument("--verbose", action="store_true", help="Enable debug logging")
+    args = parser.parse_args()
+
+    pdf_filepath = args.input_pdf
+    model_filepath = args.model
+    easyocr_languages = args.easyocr_languages
+    tesserocr_languages = args.tesserocr_languages
+
+    # Configure logging based on verbosity
+    logger.handlers.clear()
+    handler = logging.StreamHandler()
+    logger.addHandler(handler)
+    logger.setLevel(logging.DEBUG if args.verbose else logging.INFO)
 
     device = ("cuda" if torch.cuda.is_available() else "cpu")
 
-    logger.setLevel(logging.DEBUG)
-    logger.addHandler(logging.StreamHandler())
     # reader = easyocr.Reader(easyocr_languages)
-    api = PyTessBaseAPI(path=TESSDATA_PREFIX, lang="+".join(tesserocr_languages))
+    api = PyTessBaseAPI(path="/usr/share/tesseract/tessdata", lang="+".join(tesserocr_languages))  # type: ignore
 
     model = GLAMGraphNetwork(PageNodes.features_len, PageEdges.features_len, 512, len(CLASSES_MAP))
     model.load_state_dict(torch.load(model_filepath))
@@ -58,11 +73,11 @@ def main():
             option="dict",
             flags=fitz.TEXT_PRESERVE_IMAGES
         )
-        for block in page_dict["blocks"]:
-            if block["type"] == 0:
-                for line in block["lines"]:
-                    for span in line["spans"]:
-                        text = span["text"]
+        for block in page_dict["blocks"]:  # type: ignore
+            if block["type"] == 0:  # type: ignore
+                for line in block["lines"]:  # type: ignore
+                    for span in line["spans"]:  # type: ignore
+                        text = span["text"]  # type: ignore
 
                         if INVALID_UNICODE in text:
                             ls = " " * (len(text) - len(text.lstrip()))
@@ -70,13 +85,13 @@ def main():
                             pixmap = fitz.utils.get_pixmap(
                                 page=page,
                                 matrix=fitz.Matrix(5, 5),
-                                clip=span["bbox"],
+                                clip=span["bbox"],  # type: ignore
                                 colorspace=fitz.csGRAY,
                             )
 
                             bpp = get_bytes_per_pixel(pixmap.colorspace, pixmap.alpha)
                             api.SetImageBytes(
-                                imagedata=pixmap.samples,
+                                imagedata=pixmap.samples,  # type: ignore
                                 width=pixmap.w,
                                 height=pixmap.h,
                                 bytes_per_pixel=bpp,
@@ -89,11 +104,11 @@ def main():
                             old_text, text = text, ls + ocr_text + rs
                             logger.debug(f"Replaced {old_text!r} with {text!r}")
 
-                        page_nodes.append(TextNode.from_span(span, text=text))
-            elif block["type"] == 1:
-                page_nodes.append(ImageNode.from_page_block(block))
+                        page_nodes.append(TextNode.from_span(span, text=text))  # type: ignore
+            elif block["type"] == 1:  # type: ignore
+                page_nodes.append(ImageNode.from_page_block(block))  # type: ignore
             else:
-                raise ValueError(f"Unknown block type {block['type']}")
+                raise ValueError(f"Unknown block type {block['type']}")  # type: ignore
 
         # Find all edges
         page_edges = PageEdges.from_page_nodes_as_complete_graph(page_nodes)
@@ -118,9 +133,9 @@ def main():
 
         edge_prob_threshold = 0.5
         graph = nx.Graph()
-        for k in range(example.edge_index.shape[1]):
-            src_node_i = example.edge_index[0, k].item()
-            dst_node_i = example.edge_index[1, k].item()
+        for k in range(example.edge_index.shape[1]):  # type: ignore
+            src_node_i = example.edge_index[0, k].item()  # type: ignore
+            dst_node_i = example.edge_index[1, k].item()  # type: ignore
             edge_prob = edge_class_scores[k].item()
 
             if edge_prob >= edge_prob_threshold:
