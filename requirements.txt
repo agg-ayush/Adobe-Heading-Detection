@@ -1,3 +1,17 @@
 torch
 PyMuPDF
-qoi
+numpy
+torch-geometric
+scipy
+opencv-python
+easyocr
+tesserocr
+Pillow
+
+# Additional dependencies needed for training (commented out)
+# torchvision
+# torchaudio
+# networkx
+# shapely
+# tqdm
+# psutil

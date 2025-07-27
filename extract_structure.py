@@ -285,9 +285,9 @@ class PDFStructureExtractor:
 
                 # Performance check - abort if taking too long
                 elapsed = time.time() - start_time
-                if elapsed > 10:  # Leave 2 seconds buffer for post-processing
-                    logger.warning(f"Time limit approaching, stopping at page {page_num + 1}")
-                    break
+                # if elapsed > 10:  # Leave 2 seconds buffer for post-processing
+                #     logger.warning(f"Time limit approaching, stopping at page {page_num + 1}")
+                #     break
 
             doc.close()
 
