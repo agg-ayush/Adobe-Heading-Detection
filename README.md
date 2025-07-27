@@ -100,11 +100,15 @@ The extractor produces JSON in the exact required format:
 
 ```json
 {
-  "title": "Understanding AI",
+  "title": "Foundation Level Extensions",
   "outline": [
-    { "level": "H1", "text": "Introduction", "page": 1 },
-    { "level": "H2", "text": "What is AI?", "page": 2 },
-    { "level": "H3", "text": "History of AI", "page": 3 }
+    { "level": "H2", "text": "Overview", "page": 1 },
+    { "level": "H1", "text": "Foundation Level Extensions", "page": 1 },
+    { "level": "H1", "text": "Revision History", "page": 3 },
+    { "level": "H3", "text": "Acknowledgements", "page": 5 },
+    { "level": "H1", "text": "Introduction to the Foundation Level Extensions", "page": 6 },
+    { "level": "H2", "text": "2.1 Intended Audience", "page": 7 },
+    { "level": "H1", "text": "Overview of the Foundation Level Extension", "page": 10 }
   ]
 }
 ```
@@ -188,26 +192,31 @@ python -c "import fitz; print(fitz.Document('your.pdf').page_count)"
 
 ## Example Output
 
-For a legal document:
+For a technical documentation PDF:
 ```json
 {
-  "title": "Law No. (6) of 2019",
+  "title": "Foundation Level Extensions",
   "outline": [
-    { "level": "H1", "text": "Ownership of Jointly Owned Real Property", "page": 6 },
-    { "level": "H2", "text": "Jointly Owned Real Property", "page": 7 },
-    { "level": "H2", "text": "Major Project", "page": 7 },
-    { "level": "H3", "text": "Hotel Project", "page": 7 }
+    { "level": "H2", "text": "Overview", "page": 1 },
+    { "level": "H1", "text": "Foundation Level Extensions", "page": 1 },
+    { "level": "H1", "text": "Revision History", "page": 3 },
+    { "level": "H3", "text": "Acknowledgements", "page": 5 },
+    { "level": "H1", "text": "Introduction to the Foundation Level Extensions", "page": 6 },
+    { "level": "H2", "text": "2.1 Intended Audience", "page": 7 }
   ]
 }
 ```
 
 ## License
 
-This project is licensed under dual licensing:
-- Apache 2.0 License
-- MIT License
+This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
 
-**Note**: PyMuPDF dependency uses AGPL-3.0 license which may have implications for commercial use.
+**Important Note**: This project includes dependencies with their own licenses:
+- PyMuPDF (AGPL-3.0) - May have implications for commercial use
+- PyTorch (BSD-3-Clause)
+- Other dependencies retain their respective licenses
+
+Please review dependency licenses if you plan to use this commercially.
 
 ---
 
