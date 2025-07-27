@@ -5,17 +5,24 @@ import re
 import time
 from collections import namedtuple
 from dataclasses import dataclass
-from typing import NamedTuple, Sequence, MutableSequence, Optional, Generator, Iterable, Any, Mapping
+from typing import NamedTuple, Sequence, MutableSequence, Optional, Generator, Iterable, Any, Mapping, TYPE_CHECKING
 
 import cv2
 import easyocr
 import numpy as np
-import tesserocr
+try:
+    import tesserocr
+    from tesserocr import PyTessBaseAPI
+    TESSEROCR_AVAILABLE = True
+except ImportError:
+    TESSEROCR_AVAILABLE = False
 import torch
-from tesserocr import PyTessBaseAPI
 
 import fitz  # PyMuPDF
 from PIL import Image, ImageDraw
+
+if TYPE_CHECKING:
+    from PIL.Image import Image as PILImage
 
 
 INVALID_UNICODE = chr(0xFFFD)
@@ -135,7 +142,7 @@ class ImageNode(Node):
     """
     Image node in the GLAM graph.
     """
-    image: Optional[Image] = None
+    image: Optional["PILImage"] = None
 
     @classmethod
     def from_page_block(
