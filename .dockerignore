@@ -1,0 +1,14 @@
+# Ignore unnecessary files for Docker build
+__pycache__/
+core/__pycache__/
+.git
+.gitignore
+build/
+
+# Ignore input/output directories (use mounted volumes)
+input/
+output/
+
+# Ignore debug and development files
+debug/
+README.md
