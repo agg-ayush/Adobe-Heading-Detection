@@ -109,7 +109,7 @@ glam/
 │   ├── __init__.py
 │   ├── common.py            # Data structures and utilities
 │   └── models.py            # GLAM neural network architecture
-├── dln_glam_prepare.py      # Class definitions and mappings
+├── core_prepare.py      # Class definitions and mappings
 ├── requirements.txt         # Python dependencies
 └── examples/
     └── pdf/
@@ -180,7 +180,7 @@ See LICENSE-APACHE-2.0 and LICENSE-MIT files for details.
 **Ready for production use!** 🚀
 
 ```shell
-python dln_glam_prepare.py --dataset-path /home/i/dataset/DocLayNet/raw/DocLayNet/DATA --output-path /home/i/dataset/DocLayNet/glam
+python core_prepare.py --dataset-path /home/i/dataset/DocLayNet/raw/DocLayNet/DATA --output-path /home/i/dataset/DocLayNet/glam
 ```
 
 ## Training

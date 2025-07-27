@@ -27,9 +27,9 @@ from torch_geometric.data import Data
 import fitz  # PyMuPDF
 
 # Import GLAM modules
-from GLAM.common import PageEdges, ImageNode, TextNode, PageNodes
-from GLAM.models import GLAMGraphNetwork
-from dln_glam_prepare import CLASSES_MAP
+from core.common import PageEdges, ImageNode, TextNode, PageNodes
+from core.models import GLAMGraphNetwork
+from glam_prepare import CLASSES_MAP
 
 # Configure logging
 logging.basicConfig(level=logging.WARNING)  # Reduce verbosity for production
